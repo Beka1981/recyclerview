@@ -51,6 +51,10 @@ class ToDoAdapter(private val toDoList: MutableList<ToDoModel>) :
         toDoList.removeAt(position)
         notifyItemRemoved(position)
     }
+
+    fun changedToDoItem(position: Int) {
+        notifyItemChanged(position)
+    }
 }
 
 class ToDoViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {}

@@ -4,4 +4,7 @@
     <string name="hint_text">Enter to do</string>
     <string name="field_required">all fields are required!</string>
     <string name="todos">ToDos </string>
+    <string name="added">ToDos new item added!</string>
+    <string name="deleted">ToDos item deleted!</string>
+    <string name="changed">ToDos item changed!</string>
 </resources>

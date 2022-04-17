@@ -3,6 +3,7 @@ package ge.gogichaishvili.lesson4
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import ge.gogichaishvili.lesson4.adapters.ToDoAdapter
@@ -30,9 +31,19 @@ class MainActivity : AppCompatActivity() {
             setOnItemCLickListener { item: ToDoModel, i: Int ->
                 if (!item.isCompleted) {
                     item.isCompleted = true
-                    notifyItemChanged(i)
+                    changedToDoItem(i)
+                    Toast.makeText(
+                        this@MainActivity,
+                        getString(R.string.changed),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 } else {
                     removeToDoItem(i)
+                    Toast.makeText(
+                        this@MainActivity,
+                        getString(R.string.deleted),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
             }
@@ -48,6 +59,7 @@ class MainActivity : AppCompatActivity() {
                 adapter.addNewToDoItem(ToDoModel(binding.etToDo.text.toString().trim()))
                 binding.etToDo.text?.clear()
                 hideKeyboard()
+                Toast.makeText(this, getString(R.string.added), Toast.LENGTH_SHORT).show()
             }
 
         }
