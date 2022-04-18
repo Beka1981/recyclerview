@@ -54,7 +54,7 @@ class ToDoAdapter(private val toDoList: MutableList<ToDoModel>) :
 
     fun changedToDoItem(position: Int) {
         notifyItemChanged(position)
-    }
+    } /// პირდაპირ გამოიძახებ notifyItemChanged ს მაშინ სიაში ჩანაცვლებაც უნდა იყოს item ის  ამ მეთოდს რომ აზრი ჰქონდეს
 }
 
 class ToDoViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {}

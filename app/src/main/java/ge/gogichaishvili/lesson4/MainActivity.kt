@@ -83,6 +83,7 @@ class MainActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable) {
 
             }
+            //აქ doOnTextChanged ლამბდა პარამეტრიანი მეთოდი შეგიძლია გამოიძახო  დანარჩენი ყველაფერი კარგადაა
         })
 
     }
