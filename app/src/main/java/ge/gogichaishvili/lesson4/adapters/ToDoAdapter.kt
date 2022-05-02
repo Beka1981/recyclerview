@@ -4,13 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ge.gogichaishvili.lesson4.R
-import ge.gogichaishvili.lesson4.data.ToDoModel
+import ge.gogichaishvili.lesson4.data.entities.ToDoModel
 import ge.gogichaishvili.lesson4.databinding.ListItemBinding
 
-class ToDoAdapter(private val toDoList: MutableList<ToDoModel>) :
-    RecyclerView.Adapter<ToDoViewHolder>() {
+class ToDoAdapter() : RecyclerView.Adapter<ToDoAdapter.ToDoViewHolder>() {
 
-    private lateinit var itemClickListener: (ToDoModel, Int) -> Unit
+    private val toDoList = mutableListOf<ToDoModel>()
+    private lateinit var itemClickListener: (ToDoModel) -> Unit
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoViewHolder {
         val binding =
@@ -18,45 +18,40 @@ class ToDoAdapter(private val toDoList: MutableList<ToDoModel>) :
         return ToDoViewHolder(binding)
     }
 
-    fun setOnItemCLickListener(clickListener: (ToDoModel, Int) -> Unit) {
-        itemClickListener = clickListener
+    override fun onBindViewHolder(holder: ToDoViewHolder, position: Int) {
+        holder.bindData(toDoList[position])
     }
 
-    override fun onBindViewHolder(holder: ToDoViewHolder, position: Int) {
-        val toDo = toDoList[position]
-
-        holder.binding.tvToDo.text = toDo.title
-        if (toDo.isCompleted) {
-            holder.binding.vCircle.setBackgroundResource(R.drawable.circle_bg)
-        } else {
-            holder.binding.vCircle.setBackgroundResource(R.drawable.circle_bg_red)
-        }
-
-        holder.binding.vCard.setOnClickListener {
-            itemClickListener.invoke(toDo, holder.adapterPosition)
-        }
-
+    fun setOnItemCLickListener(clickListener: (ToDoModel) -> Unit) {
+        itemClickListener = clickListener
     }
 
     override fun getItemCount(): Int {
         return toDoList.size
     }
 
-    fun addNewToDoItem(toDoModel: ToDoModel) {
-        toDoList.add(0, toDoModel)
-        notifyItemInserted(0)
+    fun updateAll(list: List<ToDoModel>) {
+        toDoList.clear()
+        toDoList.addAll(list)
+        notifyDataSetChanged()
     }
 
-    fun removeToDoItem(position: Int) {
-        toDoList.removeAt(position)
-        notifyItemRemoved(position)
-    }
+    inner class ToDoViewHolder(private val binding: ListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bindData(toDoModel: ToDoModel) {
 
-    fun changedToDoItem(position: Int) {
-        notifyItemChanged(position)
-    } /// პირდაპირ გამოიძახებ notifyItemChanged ს მაშინ სიაში ჩანაცვლებაც უნდა იყოს item ის  ამ მეთოდს რომ აზრი ჰქონდეს
+            binding.tvToDo.text = toDoModel.title
+            if (toDoModel.isCompleted) {
+                binding.vCircle.setBackgroundResource(R.drawable.circle_bg)
+            } else {
+                binding.vCircle.setBackgroundResource(R.drawable.circle_bg_red)
+            }
+
+            binding.vCard.setOnClickListener {
+                itemClickListener.invoke(toDoModel)
+            }
+        }
+    }
 }
-
-class ToDoViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {}
 
 

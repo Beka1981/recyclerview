@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cl_main"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/padding">
-    <!-- ზოგადი სახელია padding common_padding ჯობს!-->
+    android:layout_height="wrap_content">
+
     <View
         android:id="@+id/vCard"
         android:layout_width="0dp"
         android:layout_height="@dimen/card"
+        android:layout_marginTop="@dimen/margin_top"
         android:background="@drawable/card"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -81,9 +81,22 @@
         android:id="@+id/btnAddToList"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_bottom"
+        android:layout_marginBottom="@dimen/margin_bottom_small"
         android:background="@drawable/button_blue_bg"
         android:text="@string/add_to_list"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_size"
+        app:layout_constraintBottom_toTopOf="@+id/btnDeleteAll"
+        app:layout_constraintEnd_toEndOf="@id/rightGuide"
+        app:layout_constraintStart_toStartOf="@id/leftGuide" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnDeleteAll"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_bottom"
+        android:background="@drawable/button_red_bg"
+        android:text="@string/delete_all"
         android:textColor="@color/white"
         android:textSize="@dimen/font_size"
         app:layout_constraintBottom_toBottomOf="parent"

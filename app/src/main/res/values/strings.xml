@@ -7,4 +7,5 @@
     <string name="added">ToDos new item added!</string>
     <string name="deleted">ToDos item deleted!</string>
     <string name="changed">ToDos item changed!</string>
+    <string name="delete_all">Delete all</string>
 </resources>
